@@ -408,5 +408,5 @@
 {"name":"org.junit.internal.runners.JUnit4ClassRunner:getDescription","imports":["org.junit.internal.runners.JUnit4ClassRunner:methodDescription"]},
 {"name":"org.junit.internal.runners.JUnit4ClassRunner:methodDescription","imports":["org.junit.internal.runners.JUnit4ClassRunner:testName"]},
 {"name":"org.junit.internal.runners.JUnit38ClassRunner:makeDescription","imports":["junit.extensions.TestDecorator:getTest"]},
-{"name":"org.junit.internal.requests.ClassRequest:getRunner","imports":["org.junit.internal.builders.AllDefaultPossibilitiesBuilder:safeRunnerForClass"]},
+{"name":"org.junit.internal.requests.ClassRequest:getRunner","imports":["org.junit.internal.builders.AllDefaultPossibilitiesBuilder:safeRunnerForClass"]}
 ]
