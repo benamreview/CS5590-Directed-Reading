@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+#my_file {
+display: none;
+}
+
+#get_file {
+background: #f9f9f9;
+border: 1px solid #88c;
+padding: 10px;
+border-radius: 5px;
+margin: 10px;
+cursor: pointer;
+}
+#customfileupload
+{
+display: inline;
+background-color: #fff;
+font-size: 14px;
+padding: 10px 30px 10px 10px;
+width: 250px;
+border: 1px solid #999;
+box-shadow: inset 1px 1px 5px #ccc;
+-webkit-box-shadow: inset 1px 1px 5px #ccc;
+-moz-box-shadow: inset 0px 0px 4px #ccc;
+-ms-box-shadow: inset 0px 0px 4px #ccc;
+-o-box-shadow: inset 0px 0px 4px #ccc;
+z-index: 1;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+</style>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <button class="btn btn-info btn-lg"><i class="glyphicon glyphicon-cloud"></i> Archive</button>
+    <button class="btn btn-success btn-lg"><i class="glyphicon glyphicon-saved"></i> Analyze A Project</button>
+    <button class="btn btn-success btn-lg"><i class="glyphicon glyphicon-arrow-up"></i> Analyze Software Evolution</button>
+    <form action="fileupload" method="post" enctype="multipart/form-data">
+    <input type="button" id="get_file" value="Open File">
+	<input type="file" multiple name="filetoupload" id="filetoupload" accept = ".jar" style="display: none;">
+	<div id="customfileupload">Select a file</div>
+        <input type="submit"></form>
+    <!--<p id = "distanceField" style="font-size: x-large; color: #5e5e5e; text-align: center;"> Hello </p>
+    <h1 align="absolute" style="text-align: center; color: #1ab188">Enter 2 numbers</h1>
+    <!-- submit form using jquery instead of <form> tag -->
+    <!--<input type="text" id="num1" placeholder="Enter 1st number:" style="margin-left: 100px"/>
+    <input type="text" id="num2" placeholder="Enter 2nd number:"/>
+    <button id="btn_getSum">Get Sum of these numbers</button> -->
+</body>
+
+
+    <script>
+		document.getElementById('get_file').onclick = function() {
+		document.getElementById('filetoupload').click();
+	};
+	$('input[type=file]').change(function (e) {
+		//alert("The text has been changed.")
+		$('#customfileupload').html($(this).val());
+        var files = $("#filetoupload")[0].files;
+        console.log(files);
+        for (var i = 0; i < files.length; i++)
+        {
+            alert(files[i].name);
+        }
+		var url = 'fileupload';
+        let data = "";
+        /*$.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            dataType: 'text'
+        }).done(function (response) {
+            console.log("in done");
+            console.log(response);
+            var result = response;
+            $("#distanceField").html(result);
+            $("#distanceField").css("white-space","pre-line"); //break down to multiple lines
+        }).fail(function() {
+            alert("Sorry. Server unavailable. ");
+        });*/
+	});
+
+	/////Test Button for Java function
+        $("#btn_getSum").click(function() {
+            //$("#demo").html("Hello, World!");
+
+            let data = {
+                num1: $("#num1").val(),
+                num2: $("#num2").val()
+            };
+            console.log(data);
+            var url = 'addnum';
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: data,
+                dataType: 'text'
+            }).done(function (response) {
+                console.log(response);
+                /*for (var i = 0; i<response.location.length; i++){
+                    console.log("\nThe Distance that it takes to travel is: " + response.location[i].distance);
+                    console.log("\nThe Traveling Time is: " + response.location[i].duration);
+                    var result = "\nThe Distance is: " + response.location[i].distance
+                        + "\nThe Time is: " + response.location[i].duration*/
+                    $("#distanceField").html(response);
+                    $("#distanceField").css("white-space","pre-line"); //break down to multiple lines
+                //}
+            }).fail(function() {
+                alert("Sorry. Server unavailable. ");
+            });
+            $("#demo").html("Bye bye, World!");
+        });
+</script>
