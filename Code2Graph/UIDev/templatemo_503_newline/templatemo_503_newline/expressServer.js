@@ -7,6 +7,9 @@ var request = require('request');
 var formidable = require('formidable');
 var fs = require('fs');
 
+//this global variable will be used to store the Java Program arguments
+var args = "junit ";
+
 app.set('view engine', 'html');
 //This body-parser module parses the JSON, buffer, string and url encoded data submitted
 // using HTTP POST request.
@@ -43,22 +46,26 @@ app.post('/fileupload', function (req, res) {
     });
     //form.parse(req);
     form.parse(req, function (err, fields, files) {
-        console.log("hello");
         console.log(files.filetoupload[0].path);
+        //This local temporary folder will be used to store the selected jar files
+        var localtmpURL = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5590-Directed-Reading\\Code2Graph\\UIDev\\templatemo_503_newline\\templatemo_503_newline\\tmp\\';
         var filestoupload = files.filetoupload;
         var filenumLeft = filestoupload.length;
-        //Create a path if not exists
-        var dir = 'C:/Users/hoang/Documents/GitHub/CS5551-Team7-1-ICP/ICP-10/Source-Code/tmp/';
 
-        if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+        args += filenumLeft + ' ';
+        //Create a path if not exists
+        //var dir = 'C:/Users/hoang/Documents/GitHub/CS5551-Team7-1-ICP/ICP-10/Source-Code/tmp/';
+
+        if (!fs.existsSync(localtmpURL)){
+            fs.mkdirSync(localtmpURL);
         }
         ///Copy files over
         for (var i = 0; i < filestoupload.length; i++)
         {
-            console.log(filestoupload[i].name);
+
+            args += localtmpURL + filestoupload[i].name + ' ';
             var oldpath = filestoupload[i].path;
-            var newpath = 'C:/Users/hoang/Documents/GitHub/CS5551-Team7-1-ICP/ICP-10/Source-Code/tmp/' + filestoupload[i].name;
+            var newpath = localtmpURL + filestoupload[i].name;
             fs.rename(oldpath, newpath, function (err) {
                 if (err) throw err;
                 if(--filenumLeft == 0){
@@ -69,10 +76,10 @@ app.post('/fileupload', function (req, res) {
                 }
             });
         }
+        console.log(args);
         //Call Java Program to process the uploaded files
-        var localtmpURL = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5551-Team7-1-ICP\\ICP-10\\Source-Code\\tmp\\';
         var exec = require('child_process').exec, child;
-        child = exec('java -jar JavaCallGraphVJ.jar ' + 'junit 5 ' + localtmpURL+'junit-4.3.jar ' + localtmpURL+'junit-4.5.jar ' + localtmpURL+'junit-4.7.jar ' + localtmpURL+'junit-4.9.jar',
+        child = exec('java -jar JavaCallGraphVJ.jar ' + args,
             function (error, stdout, stderr){
                 console.log('stdout: ' + stdout);
                 result = stdout;
@@ -92,6 +99,8 @@ app.post('/fileupload', function (req, res) {
                         // Write the content of the file to response body
                         res.write(data.toString());
                     }
+                    //Reset the program arguments
+                    args = "junit ";
                     // Send the response body
                     res.end();
                 });
