@@ -154,13 +154,27 @@
             </div>
             <div class="cd-half-width fourth-slide">
                 <div class="container">
+                    <div class = "row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="content fourth-content">
+                                <div class="row">
+                                    <div class="col-md-12 project-item">
+                                        <button type="submit" id="directory-btn" class="btn">View old projects</button>
+                                        <p id="result"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-half-width fourth-slide">
+                <div class="container">
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="content fourth-content">
                                 <div class="row">
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-01.jpg" data-lightbox="image-1"><img src="img/project-item-01.jpg"></a>
-                                    </div>
                                     <div class="col-md-3 project-item">
                                         <a href="img/item-02.jpg" data-lightbox="image-1"><img src="img/project-item-02.jpg"></a>
                                     </div>
@@ -243,7 +257,7 @@
                         <div class="col-md-12">
                             <div class="content fivth-content">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="left-info">
                                             <form action="fileupload" method="post" enctype="multipart/form-data">
                                                 <!-- Use <button> tag instead of <input type = "button"> tag because these two are different
@@ -252,7 +266,11 @@
                                                 <br><br><input type="file" multiple name="filetoupload" id="filetoupload" accept = ".jar" style="display: none;">
                                                 <div id="customfileupload">Select a file</div>
                                                 <br><br>
-                                                <input class="btn btn-success btn-lg" id = "submit_btn"type="submit" value="Upload & Analyze"/></form>
+                                                Enter Your Project Name: <input name="pname" style = "border-style: groove;" type="text" class="form-control" id="pname" placeholder="Project Name" required="">
+                                                <br><input class="btn btn-success btn-lg" id = "submit_btn"type="submit" value="Upload & Analyze"/>
+
+                                            </form>
+
                                             <br><br>
                                             <em>3344 Donec mollis libero<br>at metus luctus 10110</em>
                                             </p>
@@ -265,7 +283,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="row">
                                             <form id="contact" action="" method="post">
                                                 <div class="col-md-6">
@@ -325,6 +343,7 @@
         $('#customfileupload').html($(this).val());
         var files = $("#filetoupload")[0].files;
         console.log(files);
+        alert($("#pname").val());
         for (var i = 0; i < files.length; i++)
         {
             alert(files[i].name);
@@ -376,6 +395,41 @@
             alert("Sorry. Server unavailable. ");
         });
         $("#demo").html("Bye bye, World!");
+    });
+    $("#directory-btn").click(function() {
+        //$("#demo").html("Hello, World!");
+
+        /*let data = {
+            num1: $("#num1").val(),
+            num2: $("#num2").val()
+        };*/
+        var url = 'pArchive';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            dataType: 'json'
+        }).done(function (response) {
+            console.log(response);
+            var resultStr = "";
+            //$('#result').text(JSON.stringify(response));
+            console.log(response.project.length);
+            for (var i = 0; i<response.project.length; i++){
+                //console.log("\nThe Distance that it takes to travel is: " + response.location[i].distance);
+                //console.log("\nThe Traveling Time is: " + response.location[i].duration);
+                $('<a>',{
+                    id:response.project[i].name,
+                    text:response.project[i].name,
+                    href:'/loadProject?id=' + response.project[i].name,
+                    //click:function(){alert('test');return false;}
+                }).appendTo($('#result'));
+                $('<br>').appendTo($('#result'));
+            //$("#distanceField").html(response);
+            //$("#distanceField").css("white-space","pre-line"); //break down to multiple lines
+            }
+        }).fail(function() {
+            alert("Sorry. Server unavailable. ");
+        });
+        //$("#demo").html("Bye bye, World!");
     });
 </script>
 </html>

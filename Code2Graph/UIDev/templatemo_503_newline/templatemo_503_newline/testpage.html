@@ -46,7 +46,8 @@ text-overflow: ellipsis;
     <input type="button" id="get_file" value="Open File">
 	<input type="file" multiple name="filetoupload" id="filetoupload" accept = ".jar" style="display: none;">
 	<div id="customfileupload">Select a file</div>
-        <input type="submit"></form>
+        <input type="submit">
+        Enter the project's name (default to "project"): <input type="text" name="pname" id = "pname"><br></form>
     <!--<p id = "distanceField" style="font-size: x-large; color: #5e5e5e; text-align: center;"> Hello </p>
     <h1 align="absolute" style="text-align: center; color: #1ab188">Enter 2 numbers</h1>
     <!-- submit form using jquery instead of <form> tag -->
@@ -65,8 +66,10 @@ text-overflow: ellipsis;
 		$('#customfileupload').html($(this).val());
         var files = $("#filetoupload")[0].files;
         console.log(files);
+
         for (var i = 0; i < files.length; i++)
         {
+
             alert(files[i].name);
         }
 		var url = 'fileupload';

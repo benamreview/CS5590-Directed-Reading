@@ -6,10 +6,9 @@ var app = express();
 var request = require('request');
 var formidable = require('formidable');
 var fs = require('fs');
-
 //this global variable will be used to store the Java Program arguments
 var args = "junit ";
-
+var mainFolder = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5590-Directed-Reading\\Code2Graph\\UIDev\\templatemo_503_newline\\templatemo_503_newline\\tmp';
 app.set('view engine', 'html');
 //This body-parser module parses the JSON, buffer, string and url encoded data submitted
 // using HTTP POST request.
@@ -22,7 +21,34 @@ app.get("/", function(req, res)
 {
     res.sendFile("index.html", {"root": __dirname});
 });
+app.get("/loadProject", function(req, res)
+{
+    console.log(req.query.id);
+    var projectName = req.query.id;
+    res.sendFile("Results.html", {"root": __dirname + "\\tmp\\" + projectName });
+});
+app.post('/pArchive', function (req, res) {
+    const testFolder = './tmp/';
+    var result={
+        'project': []
+    };
+    fs.readdir(testFolder, (err, files) => {
+        files.forEach(file => {
+            //console.log(file);
+            result.project.push({
+                'name': file,
+                'path': mainFolder + '\\' + file + '\\Results.html'
+            });
+        });
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        JSONResult = JSON.stringify(result);
+        //console.log(JSONResult);
+        res.write(JSONResult);
+        res.end();
+    })
 
+
+});
 app.post('/fileupload', function (req, res) {
     var form = new formidable.IncomingForm(),
         files = [],
@@ -48,7 +74,14 @@ app.post('/fileupload', function (req, res) {
     form.parse(req, function (err, fields, files) {
         console.log(files.filetoupload[0].path);
         //This local temporary folder will be used to store the selected jar files
-        var localtmpURL = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5590-Directed-Reading\\Code2Graph\\UIDev\\templatemo_503_newline\\templatemo_503_newline\\tmp\\';
+        var pName = fields.pname.toString();
+        if (pName == ""){
+            pName = "project1";
+        }
+        else {
+            pName = pName.replace(/\s+/g, '');
+        }
+        var localtmpURL = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5590-Directed-Reading\\Code2Graph\\UIDev\\templatemo_503_newline\\templatemo_503_newline\\tmp\\' + pName + "\\";
         var filestoupload = files.filetoupload;
         var filenumLeft = filestoupload.length;
 
@@ -77,6 +110,7 @@ app.post('/fileupload', function (req, res) {
             });
         }
         console.log(args);
+        args += ' ' + pName;
         //Call Java Program to process the uploaded files
         var exec = require('child_process').exec, child;
         child = exec('java -jar JavaCallGraphVJ.jar ' + args,
@@ -111,7 +145,7 @@ app.post('/fileupload', function (req, res) {
             });
     });
 
-})
+});
 app.get('/test', function(req, res, next) {
     res.json({ message: 'Hello World' });
 });
