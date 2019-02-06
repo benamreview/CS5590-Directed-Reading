@@ -410,16 +410,17 @@
             dataType: 'json'
         }).done(function (response) {
             console.log(response);
-            var resultStr = "";
-            //$('#result').text(JSON.stringify(response));
+            $('#result').text("");
             console.log(response.project.length);
             for (var i = 0; i<response.project.length; i++){
                 //console.log("\nThe Distance that it takes to travel is: " + response.location[i].distance);
                 //console.log("\nThe Traveling Time is: " + response.location[i].duration);
                 $('<a>',{
+                    title: "Click to see results of project " + response.project[i].name,
                     id:response.project[i].name,
                     text:response.project[i].name,
                     href:'/loadProject?id=' + response.project[i].name,
+                    style: "font-size: 20px",
                     //click:function(){alert('test');return false;}
                 }).appendTo($('#result'));
                 $('<br>').appendTo($('#result'));
