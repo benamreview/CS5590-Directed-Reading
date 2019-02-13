@@ -48,6 +48,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="//d3js.org/d3.v4.min.js"></script>
+    <script src="https://unpkg.com/viz.js@1.8.1/viz.js" type="javascript/worker"></script>
+    <script src="https://unpkg.com/d3-graphviz@1.4.0/build/d3-graphviz.min.js"></script>
 </head>
 <body>
 
@@ -87,11 +90,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="content first-content">
-                                <h4>Let’s Talk More About Newline</h4>
-                                <p>Newline is free CSS template by templatemo. Credits go to <a href="https://videos.pexels.com/videos/busy-street-in-the-city-1089" target="_blank">Pexels.com</a> for a video background and <a href="http://unsplash.com" target="_blank">Unsplash</a> for images. Please tell your friends about templatemo and this is a way to help back. Thank you. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum convallis mi. In dapibus auctor dictum donec mattis quis eros ultricies feugiat.</p>
-                                <div class="primary-button">
-                                    <a href="#">Discover More</a>
-                                </div>
+
+                                <h4>Version 2.0's Call Graph</h4>
+                                <!--<p>Newline is free CSS template by templatemo. Credits go to <a href="https://videos.pexels.com/videos/busy-street-in-the-city-1089" target="_blank">Pexels.com</a> for a video background and <a href="http://unsplash.com" target="_blank">Unsplash</a> for images. Please tell your friends about templatemo and this is a way to help back. Thank you. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum convallis mi. In dapibus auctor dictum donec mattis quis eros ultricies feugiat.</p>-->
+                                <!--<div class="primary-button">-->
+                                    <!--<a href="#">Discover More</a>-->
+                                <!--</div>-->
+                                <div id="graph" style="text-align: center;"></div>
+                                <a href="#" onClick="MyWindow=window.open('/callgraph-popup.html','MyWindow','width=800,height=600'); return false;">Click Here</a>
                             </div>
                         </div>
                     </div>
@@ -257,8 +263,8 @@
                         <div class="col-md-12">
                             <div class="content fivth-content">
                                 <div class="row">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <div class="left-info" style="text-align: center">
+                                    <div class="col-md-6">
+                                        <div class="left-info">
                                             <form action="fileupload" method="post" enctype="multipart/form-data" id = "fileuploadForm">
                                                 <!-- Use <button> tag instead of <input type = "button"> tag because these two are different
                                                  <button> without the type will implicitly submit-->
@@ -276,32 +282,32 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <!--<div class="col-md-6">-->
-                                        <!--<div class="row">-->
-                                            <!--<form id="contact" action="" method="post">-->
-                                                <!--<div class="col-md-6">-->
-                                                    <!--<fieldset>-->
-                                                        <!--<input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">-->
-                                                    <!--</fieldset>-->
-                                                <!--</div>-->
-                                                <!--<div class="col-md-6">-->
-                                                    <!--<fieldset>-->
-                                                        <!--<input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">-->
-                                                    <!--</fieldset>-->
-                                                <!--</div>-->
-                                                <!--<div class="col-md-12">-->
-                                                    <!--<fieldset>-->
-                                                        <!--<textarea name="message" rows="6" class="form-control" id="message" placeholder="Message" required=""></textarea>-->
-                                                    <!--</fieldset>-->
-                                                <!--</div>-->
-                                                <!--<div class="col-md-12">-->
-                                                    <!--<fieldset>-->
-                                                        <!--<button type="submit" id="form-submit" class="btn">Send Message</button>-->
-                                                    <!--</fieldset>-->
-                                                <!--</div>-->
-                                            <!--</form>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <form id="contact" action="" method="post">
+                                                <div class="col-md-6">
+                                                    <fieldset>
+                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <fieldset>
+                                                        <input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <fieldset>
+                                                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message" required=""></textarea>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <fieldset>
+                                                        <button type="submit" id="form-submit" class="btn">Send Message</button>
+                                                    </fieldset>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class = 'row'>
                                     <div class = 'col-md-12' style = "text-align: center">
@@ -313,19 +319,19 @@
                                 </div>
                                 <div class = 'row' id ="chartRow" style="display:none">
                                     <div class = 'col-md-2 col-md-offset-1'>
-                                        <canvas id="myChart" height = 500></canvas>
+                                        <canvas id="myChart" height = 400></canvas>
                                     </div>
                                     <div class = 'col-md-2'>
-                                        <canvas id="myChart2" height = 500></canvas>
+                                        <canvas id="myChart2" height = 400></canvas>
                                     </div>
                                     <div class = 'col-md-2'>
-                                        <canvas id="myChart3" height = 500></canvas>
+                                        <canvas id="myChart3" height = 400></canvas>
                                     </div>
                                     <div class = 'col-md-2'>
-                                        <canvas id="myChart4" height = 500></canvas>
+                                        <canvas id="myChart4" height = 400></canvas>
                                     </div>
                                     <div class = 'col-md-2'>
-                                        <canvas id="myChart5" height = 500></canvas>
+                                        <canvas id="myChart5" height = 400></canvas>
                                     </div>
 
                                 </div>
@@ -381,19 +387,15 @@
         document.getElementById('filetoupload').click();
     };
     $('input[type=file]').change(function (e) {
-        var fileNames = ""
-        $('#customfileupload').text("");
-        //$('#customfileupload').html($(this).val());
+        //alert("The text has been changed.")
+        $('#customfileupload').html($(this).val());
         var files = $("#filetoupload")[0].files;
         console.log(files);
         alert($("#pname").val());
         for (var i = 0; i < files.length; i++)
         {
             alert(files[i].name);
-            fileNames+="<br>" + files[i].name;
         }
-        fileNames=fileNames.substr(4); //omit first <br>
-        $('#customfileupload').append(fileNames);
         var url = 'fileupload';
         let data = "";
         /*$.ajax({
@@ -563,9 +565,7 @@
                     $( "#versionTable .btn" ).click(function() {
                         //alert($(this).attr('id'));
                         console.log($(this).attr('id'));
-                        window.open('/callgraph-popup.html','MyWindow','width=800,height=600');
-                        return false;
-
+                        window.location.href = "callgraph.html";
                     });
                     ///Show Charts///
                     $("#chartRow").show();
@@ -696,6 +696,12 @@
 
             });
     });
+    $.get('/tmp/Hello/dot.txt', function(data) {
+        d3.select("#graph").graphviz()
+            .fade(false)
+            .renderDot(data);
+    }, 'text');
+
 
 </script>
 </html>

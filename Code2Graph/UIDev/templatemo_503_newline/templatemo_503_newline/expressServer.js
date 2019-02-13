@@ -25,7 +25,12 @@ app.get("/loadProject", function(req, res)
 {
     console.log(req.query.id);
     var projectName = req.query.id;
-    res.sendFile("Results.html", {"root": __dirname + "\\tmp\\" + projectName });
+    //res.sendFile("arch.jpg", {"root": __dirname + "\\tmp\\" + projectName });
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    var ResultURL =  '\\tmp\\' + projectName + '\\Results.html';
+    console.log(ResultURL);
+    res.write(ResultURL);
+    res.end();
 });
 app.post('/pArchive', function (req, res) {
     const testFolder = './tmp/';
@@ -55,10 +60,12 @@ app.post('/fileupload', function (req, res) {
         fields = [];
     form.multiples = true;
     form.on('field', function(field, value) {
+        console.log("field")
         console.log(field);
         fields.push([field, value]);
     })
     form.on('file', function(field, file) {
+        console.log("field and file")
         console.log(field);
         console.log(file.name);
         files.push([field, file]);
@@ -117,37 +124,90 @@ app.post('/fileupload', function (req, res) {
             function (error, stdout, stderr){
                 console.log('stdout: ' + stdout);
                 result = stdout;
-                fs.readFile(localtmpURL + 'Results.html', function (err, data) {
-                    if (err) {
-                        console.log(err);
-                        // HTTP Status: 404 : NOT FOUND
-                        // Content Type: text/plain
-                        res.writeHead(404, {'Content-Type': 'text/html'});
-                    }
-                    else {
-                        //Page found
-                        // HTTP Status: 200 : OK
-                        // Content Type: text/plain
-                        res.writeHead(200, {'Content-Type': 'text/html'});
-
-                        // Write the content of the file to response body
-                        res.write(data.toString());
-                    }
+                // fs.readFile(localtmpURL + 'Results.html', function (err, data) {
+                //     if (err) {
+                //         console.log(err);
+                //         // HTTP Status: 404 : NOT FOUND
+                //         // Content Type: text/plain
+                //         res.writeHead(404, {'Content-Type': 'text/html'});
+                //     }
+                //     else {
+                //         //Page found
+                //         // HTTP Status: 200 : OK
+                //         // Content Type: text/plain
+                //         res.writeHead(200, {'Content-Type': 'text/html'});
+                //
+                //         // Write the content of the file to response body
+                //         res.write(data.toString());
+                //     }
                     //Reset the program arguments
                     args = "junit ";
                     // Send the response body
-                    res.end();
-                });
+
+                    //Send JSON file of table back to Client
+
+                    var result={
+                        'text': []
+                    };
+                    fs.readFile('kpisForAllVersions.txt', function(err, data) {
+                        if (err) throw err;
+                        var array = data.toString().split("\n");
+                        for (i in array) {
+
+                            var subarray = array[i].toString().split(" ");
+                            result.text.push({
+                                "version": subarray
+                            });
+                            //console.log(array[i]);
+                            for (j in subarray) {
+                                console.log(subarray[j]);
+                            }
+
+                        }
+                        res.writeHead(200, {'Content-Type': 'application/json'});
+                        JSONResult = JSON.stringify(result);
+                        //console.log(JSONResult);
+                        res.write(JSONResult);
+                        res.end();
+                    });
+                //});
                 console.log('stderr: ' + stderr);
                 if(error !== null){
                     console.log('exec error: ' + error);
                 }
+
             });
+
     });
 
 });
-app.get('/test', function(req, res, next) {
-    res.json({ message: 'Hello World' });
+app.post('/test', function(req, res, next) {
+    //res.json({ message: 'Hello World' });
+    var result={
+        'text': []
+    };
+    fs.readFile('kpisForAllVersions.txt', function(err, data) {
+        if(err) throw err;
+        var array = data.toString().split("\n");
+        for(i in array) {
+
+            var subarray = array[i].toString().split(" ");
+            result.text.push({
+                "version": subarray
+            });
+            //console.log(array[i]);
+            for (j in subarray){
+                console.log(subarray[j]);
+            }
+
+        }
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        JSONResult = JSON.stringify(result);
+        //console.log(JSONResult);
+        res.write(JSONResult);
+        res.end();
+        //done();
+    });
 });
 var port = process.env.PORT || 8080;
 var server = app.listen(port, function () {
