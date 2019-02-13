@@ -8,7 +8,7 @@ var formidable = require('formidable');
 var fs = require('fs');
 //this global variable will be used to store the Java Program arguments
 var args = "junit ";
-var mainFolder = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5590-Directed-Reading\\Code2Graph\\UIDev\\templatemo_503_newline\\templatemo_503_newline\\tmp';
+var mainFolder = __dirname + "\\tmp";
 app.set('view engine', 'html');
 //This body-parser module parses the JSON, buffer, string and url encoded data submitted
 // using HTTP POST request.
@@ -88,7 +88,8 @@ app.post('/fileupload', function (req, res) {
         else {
             pName = pName.replace(/\s+/g, '');
         }
-        var localtmpURL = 'C:\\Users\\hoang\\Documents\\GitHub\\CS5590-Directed-Reading\\Code2Graph\\UIDev\\templatemo_503_newline\\templatemo_503_newline\\tmp\\' + pName + "\\";
+        var localtmpURL = mainFolder + '\\' + pName + "\\";
+        console.log(localtmpURL);
         var filestoupload = files.filetoupload;
         var filenumLeft = filestoupload.length;
 
