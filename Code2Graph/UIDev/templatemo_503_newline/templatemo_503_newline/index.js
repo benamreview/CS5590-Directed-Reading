@@ -8,9 +8,12 @@ $(document).ready(function() {
         //$('#customfileupload').html($(this).val());
         var files = $("#filetoupload")[0].files;
         console.log(files);
-        alert($("#pname").val());
+
+        //alert($("#pname").val());
         for (var i = 0; i < files.length; i++) {
-            alert(files[i].name);
+            //Print the selected files to upload online
+            // alert(files[i].name);
+
             fileNames += "<br>" + files[i].name;
         }
         fileNames = fileNames.substr(4); //omit first <br>
@@ -124,7 +127,7 @@ $(document).ready(function() {
             method: 'POST',
             data: data,
             success: function (response) {
-                $("#versionTable");
+                $("#metrics").show();
                 var versionArr = [];
                 var nodeArr = [];
                 var edgeArr = [];
@@ -136,26 +139,27 @@ $(document).ready(function() {
                     $.each(response.text[i], function (j, item2) {
                         //first line of .txt file
                         if (i == 0) {
-                            var trHTML = '<tr><th>' + item2[0]
-                                + '</th><th>' + item2[1]
-                                + '</th><th>' + item2[2]
-                                + '</th><th>' + item2[3]
-                                + '</th><th>' + item2[4]
-                                + '</th><th>' + item2[5]
-                                + '</th><th>' + item2[6]
+                            var trHTML = '<tr><th>' + "Version Name"
+                                + '</th><th>' + "Number of Nodes"
+                                + '</th><th>' + "Number of Edges"
+                                + '</th><th>' + "Number of Paths"
+                                + '</th><th>' + "Average Degrees"
+                                + '</th><th>' + "Clustering Coefficient"
+                                + '</th><th>' + "Diameter"
                                 + '</th></tr>';
                             $("#versionTable").append(trHTML);
                         }
-                        //the rest of the txt file
-                        else {
+
+                        //the rest of the txt file (except for last line, which is blank and will cause one "undefined" bottom row)
+                        else if (i != response.text.length-1){
                             //Item is value of each array: [1.45,3,4,...]
-                            versionArr.push(item2[0]);
-                            nodeArr.push(item2[1]);
-                            edgeArr.push(item2[2]);
-                            pathArr.push(item2[3]);
-                            avgDegArr.push(item2[4]);
-                            clustCoeffArr.push(item2[5]);
-                            diaArr.push(item2[6]);
+                            versionArr.push(item2[0]); //Version Name
+                            nodeArr.push(item2[1]); //Number of Nodes
+                            edgeArr.push(item2[2]); //Number of Edges
+                            pathArr.push(item2[3]); //Number of Paths
+                            avgDegArr.push(item2[4]); //Average Degrees
+                            clustCoeffArr.push(item2[5]); //Clustering Coefficient
+                            diaArr.push(item2[6]); //Diameter
 
                             var trHTML = '<tr><td>' + item2[0]
                                 + '</td><td>' + item2[1]
@@ -167,6 +171,10 @@ $(document).ready(function() {
                                 + '</td><td><button id = \'' + item2[0] + '\' class = \'btn call-graph-btn\'>View Call Graph</button>'
                                 + '</td></tr>';
                             $("#versionTable").append(trHTML);
+                            //Add Item to Drop-down Menus;
+                            var newFileItem = "<option>" + item2[0] + "</option> " ;
+                            $("#drop-1").append(newFileItem);
+                            $("#drop-2").append(newFileItem);
                         }
                         //end of inner loop
                     });
@@ -183,7 +191,17 @@ $(document).ready(function() {
                 $("#versionTable .btn").click(function () {
                     //alert($(this).attr('id'));
                     console.log($(this).attr('id'));
-                    window.open('/callgraph-popup.html', 'MyWindow', 'width=800,height=600');
+                    // Check browser support for local storage
+                    if (typeof(Storage) !== "undefined") {
+                        // Store
+                        localStorage.setItem("verID", $(this).attr('id'));
+                        localStorage.setItem("pName", $("#pname").val());
+                        // Retrieve
+                        document.getElementById("result").innerHTML = localStorage.getItem("verID");
+                        window.open('/callgraph-popup.html', 'MyWindow', 'width=800,height=600');
+                    } else {
+                        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+                    }
                     return false;
 
                 });
@@ -295,7 +313,7 @@ $(document).ready(function() {
                         }
                     }
                 });
-                ///Call Load Project
+                ///Call Load results.html
                 var loadURL = '/loadProject?id=' + $("#pname").val();
                 $.ajax({
                     url: loadURL,
@@ -315,5 +333,22 @@ $(document).ready(function() {
             })
 
         });
+    });
+    $("#compareBtn").click(function () {
+        var diffFile = $( "#drop-1 option:selected" ).text() + $( "#drop-2 option:selected" ).text();
+        console.log($( "#drop-1 option:selected" ).text());
+        console.log($( "#drop-2 option:selected" ).text());
+        console.log(diffFile);
+        if (typeof(Storage) !== "undefined") {
+            // Store project name and diff file
+            localStorage.setItem("diffFile", diffFile);
+            localStorage.setItem("pName", $("#pname").val());
+            // Retrieve
+            document.getElementById("result").innerHTML = localStorage.getItem("diffFile");
+
+            window.open('/callgraph-comp.html', 'MyWindow', 'width=800,height=600');
+        } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        }
     });
 });

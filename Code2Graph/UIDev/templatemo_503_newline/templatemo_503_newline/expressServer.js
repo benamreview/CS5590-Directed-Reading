@@ -150,7 +150,7 @@ app.post('/fileupload', function (req, res) {
                     var result={
                         'text': []
                     };
-                    fs.readFile('kpisForAllVersions.txt', function(err, data) {
+                    fs.readFile(localtmpURL + "kpisForAllVersions.txt", function(err, data) {
                         if (err) throw err;
                         var array = data.toString().split("\n");
                         for (i in array) {
