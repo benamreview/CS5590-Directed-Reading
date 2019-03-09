@@ -3,7 +3,6 @@
  */
 var express = require('express');
 var app = express();
-var request = require('request');
 var formidable = require('formidable');
 var fs = require('fs');
 var process = require('process');
