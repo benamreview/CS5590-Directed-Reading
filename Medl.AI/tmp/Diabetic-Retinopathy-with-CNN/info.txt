@@ -1,0 +1,1 @@
+This model is about detecting Diabetic Retinopathy. In this disease high blood sugar levels cause damaged to the blood vessels in the retina. Clinicians take close to two days in diagnosing this disease.
