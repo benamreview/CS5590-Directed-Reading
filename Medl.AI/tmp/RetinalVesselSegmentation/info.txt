@@ -1,0 +1,1 @@
+Retinal vessel segmentation is the task of segmenting vessels in retina imagery.

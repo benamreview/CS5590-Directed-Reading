@@ -1,0 +1,1 @@
+This model classifies the cardiomegaly from chest X-ray images. This model uses transfer learning by taking the first layers of a VGG16 model trained on ImageNet data and retrains on grayscale images of chests. 

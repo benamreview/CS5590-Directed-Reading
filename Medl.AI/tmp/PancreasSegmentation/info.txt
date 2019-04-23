@@ -1,0 +1,1 @@
+Pancreas segmentation is the task of segmenting out the pancreas from medical imaging.

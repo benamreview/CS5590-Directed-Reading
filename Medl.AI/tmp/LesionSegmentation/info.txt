@@ -1,0 +1,1 @@
+Lesion segmentation is the task of segmenting out lesions from other objects in medical based images

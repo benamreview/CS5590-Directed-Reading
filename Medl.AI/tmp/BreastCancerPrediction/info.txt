@@ -1,0 +1,1 @@
+ANN (Artificial Neural Network) to classify tumors into Malignant or Benign type, when provided with the tumor's dimensions
