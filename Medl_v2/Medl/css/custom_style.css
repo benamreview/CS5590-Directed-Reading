@@ -1,0 +1,72 @@
+#previewImg {
+    max-width:95%;
+    max-height:400px;
+}
+#img-container{
+    display:inline-block;
+    margin-top: 20px;
+    width:auto !important;
+    height:auto !important;
+    text-align: center;
+    border-style:dotted;
+    margin-bottom:10px;
+
+}
+.carousel {
+    height:300px;
+}
+.carousel img {
+    width:70%;
+    height:auto;
+    max-width:95%;
+    max-height:95%;
+}
+
+/**/
+/* Animated Loading Icon*/
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    margin-top:20px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/**/
+
+/*login button in the nav bar*/
+.login-btn:hover {
+    background-color: lightgrey;
+}
+/*Animation for Text Box - Slide Down*/
+
+.discussion-input {
+    margin-top:15px;
+    animation-duration: 1.5s;
+    animation-name: slidedown;
+}
+
+@keyframes slidedown {
+    from {
+        margin-top: -10%;
+        width: 100%;
+    }
+
+    to {
+        margin-top: 15px;
+        width: 100%;
+    }
+}

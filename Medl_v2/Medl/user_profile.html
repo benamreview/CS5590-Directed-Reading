@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MEDL. AI | Model Page</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/custom_style.css" rel="stylesheet">
+</head>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="landing.html" target="_blank">
+								<strong class="blue-text">MEDL. AI</strong>
+						</a>
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+						</button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect" href="landing.html">Home
+														<span class="sr-only">(current)</span>
+												</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="category-page.html" target="_blank">Category</a>
+                    </li>
+                </ul>
+                <!-- Right -->
+                <ul class="navbar-nav nav-flex-icons" id = 'user-nav-board'>
+                    <li class="nav-item">
+                        <a href="" class="nav-link waves-effect" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/" class="nav-link waves-effect" target="_blank">
+                            <i class="fab fa-github mr-2"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id = 'login-status' class="dropdown-toggle nav-link border border-light rounded waves-effect" data-toggle="dropdown" href="#">Menu 1
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="user_profile.html">User Profile</a></li>
+                            <li><a href="#" onclick="signOut()">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <!--Main layout-->
+    <section class="pt-4">
+        <br>
+        <div style='padding-bottom: 300px ;max-width:1350px' class="container-fluid dark-grey-text mt-5">
+            <!--Section: Model Card v.1-->
+            <section class="section pb-3 text-center text-lg-left">
+                <div class="p-4 card hoverable">
+                    <!--Grid row-->
+                    <div class="row justify-content-center wow fadeIn">
+                        <!--Grid column-->
+                        <div class="col-lg-3">
+                            <!--Model image-->
+                            <img style="width:100%;height:100%" src="" id = 'model-img' class="img-rounded d-inline-block" alt="First sample image">
+                        </div>
+                        <!--Grid column-->
+                        <div class="col-lg-8 ml-xl-4">
+                            <div>
+                                <span class="-inline-block lead font-weight-bold username">User</span>
+                                <span class="badge orange">Tensorflow</span>
+                                <span class="d-inline-block float-right">
+																				<i class="fa fa-star checked"></i>
+																				<i class="fa fa-star checked"></i>
+																				<i class="fa fa-star checked"></i>
+																				<i class="fa fa-star checked"></i>
+																				<i class="fa fa-star"></i>
+																</span>
+                                <br>
+                                <p class = 'email'>Rakan Alanazi
+                                    <span class="d-inline-block float-right">10/20/2019</span>
+																</p>
+                            </div>
+                            <!--Model description-->
+														<p class="dark-grey-text model-description">Sample User Description
+                            </p>
+														<!--Left Tags-->
+														<span class="mb-3">
+														  <a href="">
+														    <span class="badge purple mr-1">Python</span>
+                              </a>
+                              <a href="">
+																<span class="badge blue mr-1">Tensorflow</span>
+															</a>
+                            </span>
+                            <!--Right Tags-->
+                            <span class="float-right">
+															<a href="">
+																<i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
+															</a>
+															<a href="">
+																<i class="fa fa-download " aria-hidden="true"></i>
+															</a>
+														</span>
+                          </div>
+                          <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </div>
+            </section>
+
+
+
+            <!--Model Tabs v.1-->
+            <!--Grid row-->
+            <div class="row justify-content-center wow fadeIn">
+                <!--Grid column-->
+                <div class="col-md-12">
+                    <ul class="white-text bg-primary nav font-weight-bold nav-pills mt-4 rounded z-depth-2 p-1" id="pills-tab" role="tablist">
+                        <li class="white-text nav-item">
+                            <a class=" white-text nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Information</a>
+                        </li>
+                        <li class="white-text nav-item">
+                            <a class="white-text nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Models</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="white-text nav-link" id="pills-prediction-tab" data-toggle="pill" href="#pills-prediction" role="tab" aria-controls="pills-prediction" aria-selected="false">Activity</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="white-text nav-link" id="pills-discussion-tab" data-toggle="pill" href="#pills-discussion" role="tab" aria-controls="pills-discussion" aria-selected="false">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="border tab-content p-3" id="pills-tabContent">
+                        <br>
+                        <!--WIKI Tab-Content-->
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                               
+                                <div class="col-lg-8 ml-xl-4 text-left ">
+                                    <div>
+                                        <i class="fas fa-book text-info"></i>
+
+                                        <span class="d-inline-block font-weight-bold">DESCRIPTION </span>
+                                       
+                                    </div>
+                                    <!--Model description-->
+                                    <p class="dark-grey-text model-description">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus
+                                        id vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
+                                        id vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
+                                    </p>
+                                    <!--Left Tags-->
+                                   
+                                    <!--Right Tags-->
+                                  
+                                  </div>
+                                  <div class="col-lg-8 ml-xl-4 text-left ">
+                                      <div>
+                                          <i class="fas fa-book text-info"></i>
+                                          <span class="d-inline-block font-weight-bold">APPLICATION</span>
+                                      </div>
+                                      <!--Model description-->
+                                      <p class="dark-grey-text">ImageNet
+                                      </p>
+                                      <!--Left Tags-->
+                                     
+                                      <!--Right Tags-->
+                                    
+                                    </div>
+                                    <div class="col-lg-8 ml-xl-4 text-left ">
+                                        <div>
+                                            <i class="fas fa-book text-info"></i>
+                                            <span class="d-inline-block font-weight-bold">ARCHITECTURE</span>
+                                        </div>
+                                        <!--Model description-->
+                                        <p class="dark-grey-text">Convolutional Neural Network (CNN)
+                                        </p>
+                                        <!--Left Tags-->
+                                       
+                                        <!--Right Tags-->
+                                      
+                                      </div>
+                              
+                            <hr>
+                            <!--row-->
+                            <div class="row justify-content-center features-small mt-5 wow fadeIn">
+                                <!--Grid column-->
+                                <div class="col-xl-3 col-lg-6">
+                                    <!--Grid row-->
+                                    <div class="row">
+                                        <div class="col-10 mb-2 pl-3">
+                                            <a class="far fa-copy fa-2x mb-1 text-primary" aria-hidden="true"></a>
+                                            <h5 class="feature-title font-bold mb-1">Dataset</h5>
+                                            <p class="grey-text mt-2">MDB becomes better every month. We love the project and enhance as much as possible.
+                                        </div>
+                                    </div>
+                                    <!--/Grid row-->
+                                </div>                                
+                                <!--Grid column-->
+                                <div class="col-xl-3 col-lg-6">
+                                    <!--Grid row-->
+                                    <div class="row">
+                                        <div class="col-10 mb-2">
+                                            <a class="fas fa-level-up-alt fa-2x mb-1 text-primary" aria-hidden="true"></a>
+                                            <h5 class="feature-title font-bold mb-1">Accuracy</h5>
+                                            <p class="grey-text mt-2">MDB becomes better every month. We love the project and enhance as much as possible.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--/Grid row-->
+                                </div>
+                                <!--Grid column-->
+                                <div class="col-xl-3 col-lg-6">
+                                    <!--Grid row-->
+                                    <div class="row">
+                                        <div class="col-10 mb-2">
+                                            <a class="fas fa-code fa-2x mb-1 text-primary" aria-hidden="true"></a>
+                                            <h5 class="font-bold mb-1">Source Code</h5>
+                                            <p class="grey-text mt-2">MDB is integrated with newest jQuery. Therefore you can use all the latest features which come along with it.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--/Grid row-->
+                                </div>
+                                <!--/Grid column-->
+                            </div>
+                        </div>
+
+                        <!--Publication Tab-Content-->
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <!-- Grid row -->
+                            <div class="row" id = 'projectBoard'>
+
+                                <!--Grid column-->
+                                <div class="col-sx-12 mb-4" id = 'projectPanel'>
+
+                                    <div class="p-4 card hoverable">
+
+                                        <!--Grid row-->
+                                        <div class="row justify-content-center wow fadeIn">
+
+                                            <!--Grid column-->
+                                            <div class="col-lg-3">
+                                                <!--Featured image-->
+                                                <img style="width:100%;height:100%" src="img/model_img.jpeg" class="d-inline-block" alt="First sample image">
+
+                                            </div>
+                                            <!--Grid column-->
+
+                                            <!--Grid column-->
+                                            <div class="col-lg-8 ml-xl-4">
+
+                                                <div>
+
+                                                    <span class="-inline-block lead font-weight-bold fixed_name">Breast Cancer Detection </span><span class="badge orange" style = 'margin-left:5px'>Tensorflow</span>
+
+                                                    <span class="d-inline-block float-right">
+                                  <i class="fa fa-star checked"></i>
+                                  <i class="fa fa-star checked"></i>
+                                  <i class="fa fa-star checked"></i>
+                                  <i class="fa fa-star checked"></i>
+                                  <i class="fa fa-star"></i>
+                                  </span> <br>
+                                                    <p class = 'owner-actual'>Rakan Alanazi<span class="d-inline-block float-right">10/20/2019</p>
+
+                                                </div>
+                                                <p class='dark-grey-text fixed_description'>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus
+                                                    id vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
+                                                    id vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
+
+                                                </p>
+
+                                                <!--Deep-orange-->
+                                                <span class="mb-3">
+                                  <a href="">
+                                    <span class="badge purple mr-1">Python</span>
+                                  </a>
+                                  <a href="">
+                                    <span class="badge blue mr-1">Tensorflow</span>
+                                  </a>
+                                </span>
+                                                <span class="float-right">
+                                    <a href="">
+                                        <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
+                                      </a>
+                                    <a href="">
+                                        <i class="fa fa-download " aria-hidden="true"></i>
+                                      </a>
+                                  </span>
+                                            </div>
+                                            <!--Grid column-->
+
+                                        </div>
+                                        <!--Grid row-->
+                                    </div>
+
+                                </div>
+                                <!--Grid column-->
+
+
+
+
+
+                            </div>
+                            <!--Grid row-->
+                        </div>
+                        <!--Prediction Tab-Content-->
+                        <div class="tab-pane fade" id="pills-prediction" role="tabpanel" aria-labelledby="pills-prediction-tab">
+                            <div class="row">
+                            </div>
+                            <!-- /row -->
+                        </div>
+                        <!--Discussion Tab-Content-->
+                        <div class="tab-pane fade" id="pills-discussion" role="tabpanel" aria-labelledby="pills-discussion-tab">
+                            <!-- Discussion Board v1.0 -->
+                            <div class="row mt-2">
+                                <!-- Main news -->
+                                <div class="col-xl-8 col-md-12">
+                                    <!--Section: Discussion Posts-->
+                                    <section class="section extra-margins listing-section mt-2">
+                                        <h4 class="font-weight-bold">
+                                            <strong>LATESTS POSTS</strong>
+                                        </h4>
+                                        <hr class="title-hr">
+                                        <!--Grid row-->
+                                        <div class="row mb-0">
+                                            <!--Grid column-->
+                                            <div class="col-md-4 my-3">
+                                                <!--Card-->
+                                                <div class="card">
+                                                    <!--Card image-->
+                                                    <div class="view overlay">
+                                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Sport/6-col/img%20(1).jpg" class="card-img-top" alt="Sample image">
+                                                        <a>
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+                                                    <!--Card content-->
+                                                    <div class="card-body">
+                                                        <!--Title-->
+                                                        <p class="card-title font-weight-bold">
+                                                            <strong>Card title</strong>
+                                                        </p>
+                                                        <hr>
+                                                        <!--Text-->
+                                                        <p class="font-small font-weight-bold dark-grey-text mb-1">
+                                                            <i class="far fa-clock-o"></i> 27/08/2017
+                                                        </p>
+                                                        <p class="font-small grey-text mb-0">Anna Smith</p>
+                                                    </div>
+                                                    <!-- Card footer -->
+                                                    <div class="mdb-color lighten-3 text-center">
+                                                        <ul class="list-unstyled list-inline font-small mt-3">
+                                                            <li class="list-inline-item pr-2">
+                                                                <a href="#" class="white-text">
+																																	<i class="far fa-comments pr-1"></i>12
+																																</a>
+                                                            </li>
+                                                            <li class="list-inline-item pr-2">
+                                                                <a href="#" class="white-text">
+																																	<i class="fab fa-facebook-f pr-1"></i>21
+																																</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a href="#" class="white-text">
+																																		<i class="fab fa-twitter pr-1"></i>5
+																																</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--/.Card content-->
+                                                </div>
+                                                <!--/.Card-->
+                                            </div>
+                                            <!--Grid column-->
+                                            <div class="col-md-4 text-left mt-3">
+                                                <!--Card-->
+                                                <div class="card">
+                                                    <!--Card image-->
+                                                    <div class="view overlay">
+                                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Sport/6-col/img%20(2).jpg" class="card-img-top" alt="Sample image">
+                                                        <a>
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+                                                    <!--Card content-->
+                                                    <div class="card-body">
+                                                        <!--Text-->
+                                                        <p class="card-text mb-3">Some quick example text to build on content.
+                                                        </p>
+                                                        <p class="font-small font-weight-bold dark-grey-text mb-1">
+                                                            <i class="far fa-clock-o"></i> 27/08/2017
+                                                        </p>
+                                                        <p class="font-small grey-text mb-0">Anna Smith</p>
+                                                    </div>
+                                                    <div class="mdb-color lighten-3 text-center">
+                                                        <ul class="list-unstyled list-inline font-small mt-3">
+                                                            <li class="list-inline-item pr-2">
+                                                                <a href="#" class="white-text">
+																																											<i class="far fa-comments pr-1"></i>12
+																																										</a>
+                                                            </li>
+                                                            <li class="list-inline-item pr-2">
+                                                                <a href="#" class="white-text">
+																																											<i class="fab fa-facebook-f pr-1"></i>21
+																																										</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a href="#" class="white-text">
+																																											<i class="fab fa-twitter pr-1"></i>5
+																																										</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- Card footer -->
+                                                    <!--/.Card content-->
+                                                </div>
+                                                <!--/.Card-->
+                                            </div>
+                                            <!--Grid column-->
+                                            <!--Grid column-->
+                                            <div class="col-md-4 text-left mt-3">
+                                                <!--Card-->
+                                                <div class="card">
+                                                    <!--Card image-->
+                                                    <div class="view overlay">
+                                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Sport/6-col/img%20(3).jpg" class="card-img-top" alt="Sample image">
+                                                        <a>
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </a>
+                                                    </div>
+                                                    <!--/.Card image-->
+                                                    <!--Card content-->
+                                                    <div class="card-body">
+                                                        <!--Title-->
+                                                        <h4 class="card-title">
+                                                            <strong>Card title</strong>
+                                                        </h4>
+                                                        <hr>
+                                                        <!--Text-->
+                                                        <p class="card-text mb-3"> up the bulk content.
+                                                        </p>
+                                                        <p class="font-small font-weight-bold dark-grey-text mb-1">
+                                                            <i class="far fa-clock-o"></i> 27/08/2017
+                                                        </p>
+                                                        <p class="font-small grey-text mb-0">Anna Smith</p>
+                                                    </div>
+                                                    <!--/.Card content-->
+                                                    <!-- Card footer -->
+                                                    <div class="mdb-color lighten-3 text-center">
+                                                        <ul class="list-unstyled list-inline font-small mt-3">
+                                                            <li class="list-inline-item pr-2">
+                                                                <a href="#" class="white-text">
+																																													<i class="far fa-comments pr-1"></i>12
+																																												</a>
+                                                            </li>
+                                                            <li class="list-inline-item pr-2">
+                                                                <a href="#" class="white-text">
+																																													<i class="fab fa-facebook-f pr-1"></i>21
+																																												</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a href="#" class="white-text">
+																																													<i class="fab fa-twitter pr-1"></i>5
+																																												</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- Card footer -->
+                                                </div>
+                                                <!--/.Card-->
+                                            </div>
+                                            <!--Grid column-->
+                                        </div>
+                                        <!--/Grid row-->
+                                    </section>
+                                    <!--Pagination -->
+                                    <div class="row justify-content-center mb-4">
+                                        <nav class="mb-4">
+                                            <ul class="pagination pagination-circle pg-blue mb-0">
+                                                <!--First-->
+                                                <li class="page-item disabled clearfix d-none d-md-block">
+                                                    <a class="page-link waves-effect waves-effect">First</a>
+                                                </li>
+                                                <!--Arrow left-->
+                                                <li class="page-item disabled">
+                                                    <a class="page-link waves-effect waves-effect" aria-label="Previous">
+																											<span aria-hidden="true">«</span>
+																											<span class="sr-only">Previous</span>
+																										</a>
+                                                </li>
+                                                <!--Numbers-->
+                                                <li class="page-item active">
+                                                    <a class="page-link waves-effect waves-effect">1</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link waves-effect waves-effect">2</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link waves-effect waves-effect">3</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link waves-effect waves-effect">4</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link waves-effect waves-effect">5</a>
+                                                </li>
+                                                <!--Arrow right-->
+                                                <li class="page-item">
+                                                    <a class="page-link waves-effect waves-effect" aria-label="Next">
+																												<span aria-hidden="true">»</span>
+																												<span class="sr-only">Next</span>
+																										</a>
+                                                </li>
+                                                <!--First-->
+                                                <li class="page-item clearfix d-none d-md-block">
+                                                    <a class="page-link waves-effect waves-effect">Last</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <!--/Pagination -->
+                                </div>
+                                <!--/ Main news -->
+
+                                <!-- Sidebar -->
+                                <div class="col-xl-4 col-md-12 widget-column mt-0">
+                                    <!-- Section: Categories -->
+                                    <section class="section mb-5">
+                                        <h4 class="font-weight-bold mt-2">
+                                            <strong>CATEGORIES</strong>
+                                        </h4>
+                                        <hr class="title-hr">
+                                        <ul class="white-text bg-primary nav nav-pills mb-3 rounded z-depth-2 p-1" id="pills-tab" role="tablist">
+                                            <li class="white-text nav-item">
+                                                <a class=" white-text nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Recommend</a>
+                                            </li>
+                                            <li class="white-text nav-item">
+                                                <a class="white-text nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Top Reviews</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="white-text nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Top Rank</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content pt-2 pl-1" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                <div class="single-post">
+                                                    <!-- Grid row -->
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <!-- Image -->
+                                                            <div class="view overlay">
+                                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/4-col/img%20(121).jpg" class="img-fluid z-depth-1 rounded-0" alt="sample image">
+                                                                <a>
+                                                                    <div class="mask rgba-white-slight"></div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Excerpt -->
+                                                        <div class="col-8">
+                                                            <h6 class="mt-0 mb-3 text-left">
+                                                                <a>
+																																	<strong>This is title of the news</strong>
+																																</a>
+                                                            </h6>
+                                                            <div class="">
+                                                                <p class="font-small grey-text mb-0 text-left">
+                                                                    <i class="fas fa-clock"></i> 18/08/2017
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <!--/ Excerpt -->
+                                                    </div>
+                                                    <!--/ Grid row -->
+                                                </div>
+                                                <hr>
+                                                <div class="single-post">
+                                                    <!-- Grid row -->
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <!-- Image -->
+                                                            <div class="view overlay">
+                                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/4-col/img%20(121).jpg" class="img-fluid z-depth-1 rounded-0" alt="sample image">
+                                                                <a>
+                                                                    <div class="mask rgba-white-slight"></div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Excerpt -->
+                                                        <div class="col-8">
+                                                            <h6 class="mt-0 mb-3 text-left">
+                                                                <a>
+																																	<strong>This is title of the news</strong>
+																																</a>
+                                                            </h6>
+                                                            <div class="">
+                                                                <p class="font-small grey-text mb-0 text-left">
+                                                                    <i class="fas fa-clock"></i> 18/08/2017
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <!--/ Excerpt -->
+                                                    </div>
+                                                    <!--/ Grid row -->
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.</div>
+                                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit do ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.</div>
+                                        </div>
+                                    </section>
+                                    <!--/ Section: Categories -->
+                                </div>
+                                <!--/ Sidebar -->
+                            </div>
+                            <!--/ Discussion Board -->
+                        </div>
+                    </div>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+    </section>
+    <!--/Main layout-->
+
+    <!--Footer-->
+    <div>
+        <!--Copyright-->
+        <footer class="bg-dark page-footer text-center font-small mt-4 py-3">
+            © 2019 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MEDL.AI </a>
+            <!--/.Copyright-->
+        </footer>
+    </div>
+    <!--/.Footer-->
+
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
+    <script type="text/javascript" src="/js/user_profile.js"></script>
+    <script type="text/javascript" src="/js/user_login_nav.js"></script>
+</body>
+</html>
